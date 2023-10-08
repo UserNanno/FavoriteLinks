@@ -15,6 +15,8 @@ app.use(morgan('dev'));
 
 // Routes
 
+app.use(require('./routes')); //Busca automaticamente el archivo index.js
+
 // Public
 
 // Starting the server
