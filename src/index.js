@@ -20,14 +20,23 @@ app.set('view engine', '.hbs');
 
 // Midedlewares
 app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 // Global Variables
+app.use((req, res, nex) => {
+
+    next();
+});
 
 // Routes
 
 app.use(require('./routes')); //Busca automaticamente el archivo index.js
+app.use(require('./routes/authentication')); //Busca automaticamente el archivo index.js
+app.use('./links',require('./routes/links')); //Busca automaticamente el archivo index.js
 
 // Public
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Starting the server
 app.listen(app.get('port'), () => {
